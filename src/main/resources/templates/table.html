@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Table - Brand</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}">
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" th:href="@{/fonts/font-awesome.min.css}">
+
+</head>
+
+<body id="page-top">
+<div id="wrapper">
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <nav class="navbar navbar-light navbar-expand bg-white shadow mb-4 topbar static-top">
+                <div class="container-fluid">
+                    <button class="btn btn-link d-md-none rounded-circle mr-3" id="sidebarToggleTop" type="button"><i
+                            class="fas fa-bars"></i></button>
+                    <ul class="navbar-nav flex-nowrap ml-auto"></ul>
+                </div>
+            </nav>
+            <div class="container-fluid">
+                <h3 class="text-dark mb-4">COVID-19 Passport Requests</h3>
+                <div class="notify"><span id="notifyType" class=""></span></div>
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <p class="text-primary m-0 font-weight-bold">Requests Info</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                        </div>
+                        <div class="table-responsive table mt-2" role="grid"
+                             aria-describedby="dataTable_info">
+                            <table class="table my-0" id="dataTable">
+                                <thead>
+                                <tr>
+                                    <td><strong>Id</strong></td>
+                                    <td><strong>Name</strong></td>
+                                    <td><strong>Image</strong></td>
+                                    <td><strong>Email</strong></td>
+                                    <td><strong>Approve</strong></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:id="${{item.id}}" th:each="item: ${pending_requests}">
+                                    <td class="row-data" th:text="${{item.id}}"></td>
+                                    <td class="row-data" th:text="${{item.name}}"></td>
+                                    <td class="row-data" th:text="${{item.doc}}"></td>
+                                    <td class="row-data" th:text="${{item.email}}"></td>
+                                    <td>
+                                        <button class="btn btn-outline-warning" type="button" onclick="approve(event)">
+                                            Approve
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="container-fluid">
+    <footer class="bg-white footer-basic">
+        <div class="container my-auto">
+            <div class="text-center my-auto copyright"><span>Copyright © First Time 2021</span></div>
+        </div>
+    </footer>
+</section>
+<script>
+    function approve(e) {
+        let rowId = e.target.parentNode.parentNode.id;
+        let data = document.getElementById(rowId).querySelectorAll(".row-data");
+        let id = data[0].innerHTML;
+
+        $.ajax({
+            url: '/admin/approve/' + id,
+            type: 'GET',
+            success: function () {
+                $(".notify").toggleClass("active");
+                $("#notifyType").toggleClass("success");
+
+                setTimeout(function () {
+                    $(".notify").removeClass("active");
+                    $("#notifyType").removeClass("success");
+                }, 2000);
+            location.reload()
+            }
+
+        })
+    }
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+<script th:src="@{/js/script.min.js}"></script>
+</body>
+
+</html>

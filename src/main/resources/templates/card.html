@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>FirstTime - &lt;HACKNU/2021&gt;</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900">
+    <link rel="stylesheet" th:href="@{/css/styles.min.css}">
+</head>
+
+<body>
+<section>
+    <div class="row justify-content-center"
+         style="height: 550px;margin-top: 50px;margin-right: -20px;padding-right: 15px;padding-left: 15px;">
+        <div class="col-xl-3 offset-xl-0">
+            <div class="card" style="height: 150%;box-shadow: 0px 0px 20px 0px rgb(227,227,227);border-style: none;">
+                <div class="card-body">
+                    <h4 class="card-title">Confirmation</h4>
+                    <h6 class="text-muted card-subtitle mb-2">COVID-19 passport</h6>
+                    <p class="card-text">This card confirms that <strong><span th:text="${meta.name}"></span></strong>
+                        <br>(email:  <span th:text="${meta.email}"></span>) has uploaded his medicine card to the system.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer-basic" style="background-color: #21252a">
+    <!-- Start: Copyright -->
+    <p class="copyright">First Time © 2021</p><!-- End: Copyright -->
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
