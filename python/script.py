@@ -4,10 +4,8 @@ import pickle
 import time
 import sys
 
-
 def current_milli_time():
     return round(time.time() * 1000)
-
 
 names = {
     "imputer": f"models/imputer.pickle",
@@ -16,6 +14,7 @@ names = {
     "tpot_dead": f"models/tpot_dead.pickle",
     "tpot_alive": f"models/tpot_alive.pickle",
 }
+
 cols = [
     "sex",
     "ill_to_hosp",
@@ -57,6 +56,7 @@ death = tpot_death.predict(data)[0]
 sev_rate = max(tpot_sev.predict_proba(data)[0])
 sev = tpot_sev.predict(data)[0]
 days = np.nan
+
 if death == 0:
     days = tpot_alive.predict(data)[0]
 else:
